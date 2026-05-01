@@ -1,0 +1,100 @@
+<div class="skill-creator-container">
+  <h1><i class="bi bi-stars"></i> Create Your Own Skill Path</h1>
+  
+  <div class="template-section">
+    <button (click)="showTemplateSuggestions = !showTemplateSuggestions" 
+            class="template-toggle">
+      <i class="bi bi-lightbulb"></i> Need inspiration? View templates
+    </button>
+    
+    <div *ngIf="showTemplateSuggestions" class="templates-grid">
+      <div *ngFor="let template of templates" 
+           class="template-card"
+           (click)="applyTemplate(template)">
+        <i [class]="template.icon" class="template-icon"></i>
+        <h3>{{ template.name }}</h3>
+        <small>{{ template.subSkills.length }} sub-skills</small>
+      </div>
+    </div>
+  </div>
+  
+  <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Skill Name *</label>
+      <input type="text" formControlName="name" placeholder="e.g., Digital Marketing">
+      <div *ngIf="skillForm.get('name')?.invalid && skillForm.get('name')?.touched" class="error">
+        Skill name is required (min 3 characters)
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Icon/Emoji *</label>
+      <input type="text" formControlName="icon" placeholder="🎯">
+    </div>
+    
+    <div class="subskills-section">
+      <h3><i class="bi bi-list-check"></i> Sub-Skills</h3>
+      <div formArrayName="subSkills">
+        <div *ngFor="let skill of subSkillsArray.controls; let i = index" 
+             [formGroupName]="i"
+             class="subskill-card">
+          
+          <div class="subskill-header">
+            <h4>Sub-Skill #{{ i + 1 }}</h4>
+            <button type="button" 
+                    (click)="removeSubSkill(i)"
+                    *ngIf="subSkillsArray.length > 1"
+                    class="remove-btn">
+              <i class="bi bi-x-circle"></i> Remove
+            </button>
+          </div>
+          
+          <div class="form-group">
+            <label>Sub-Skill Name *</label>
+            <input type="text" formControlName="name" 
+                   placeholder="e.g., Understanding SEO Basics">
+          </div>
+          
+          <div class="form-group">
+            <label>Description *</label>
+            <textarea formControlName="description" rows="2"
+                      placeholder="What will you learn?"></textarea>
+          </div>
+          
+          <details class="advanced-options">
+            <summary>Advanced Options (Optional)</summary>
+            
+            <div class="form-group">
+              <label>YouTube Tutorial URL</label>
+              <input type="url" formControlName="youtubeUrl"
+                     placeholder="https://youtube.com/watch?v=...">
+            </div>
+            
+            <div class="form-group">
+              <label>ChatGPT Prompt for Learning</label>
+              <textarea formControlName="prompt" rows="2"
+                        placeholder="e.g., Explain how to optimize a website for SEO..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label>Estimated Time</label>
+              <input type="text" formControlName="estimatedTime"
+                     placeholder="e.g., 2-3 hours">
+            </div>
+          </details>
+        </div>
+      </div>
+      
+      <button type="button" (click)="addSubSkill()" class="add-btn">
+        <i class="bi bi-plus-circle"></i> Add Another Sub-Skill
+      </button>
+    </div>
+    
+    <div class="form-actions">
+      <button type="submit" [disabled]="skillForm.invalid" class="submit-btn">
+        <i class="bi bi-rocket-takeoff"></i> Create My Skill Path
+      </button>
+      <button type="button" (click)="cancel()" class="cancel-btn">Cancel</button>
+    </div>
+  </form>
+</div>

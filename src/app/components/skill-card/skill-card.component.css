@@ -1,0 +1,166 @@
+.skill-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.skill-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-color: #4ECDC4;
+}
+
+.skill-card.completed {
+  background: #f8f9fa;
+  opacity: 0.8;
+  border-color: #4CAF50;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.skill-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #4CAF50;
+}
+
+.skill-header h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.resources-button {
+  background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.resources-button:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #3db8b3 100%);
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.1);
+}
+
+.skill-description {
+  margin: 0 0 12px 0;
+  color: #666;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.resources {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #4ECDC4;
+  animation: fadeIn 0.3s ease;
+}
+
+.resource-item {
+  margin-bottom: 12px;
+}
+
+.resource-item:last-child {
+  margin-bottom: 0;
+}
+
+.resource-item strong {
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.resource-item a {
+  color: #4ECDC4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resource-item a:hover {
+  text-decoration: underline;
+}
+
+.prompt-text {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  margin: 8px 0;
+  line-height: 1.4;
+  color: #555;
+}
+
+.copy-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

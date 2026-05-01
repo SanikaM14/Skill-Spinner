@@ -1,0 +1,33 @@
+<div *ngIf="currentTopic" class="skill-container">
+  <div class="topic-header">
+    <h1>
+      <i [class]="currentTopic.icon" *ngIf="currentTopic.icon.startsWith('bi bi-')"></i>
+      <span *ngIf="!currentTopic.icon.startsWith('bi bi-')">{{ currentTopic.icon }}</span>
+      {{ currentTopic.name }}
+    </h1>
+    <div class="progress-section">
+      <div class="progress-bar-container">
+        <div class="progress-bar" 
+             [style.width.%]="completionPercentage">
+        </div>
+      </div>
+      <p>{{ completionPercentage | number:'1.0-0' }}% Complete</p>
+    </div>
+  </div>
+  
+  <div class="controls">
+    <button (click)="shuffleSkills()" class="spin-button">
+      <i class="bi bi-dice-3"></i> Spin to Randomize!
+    </button>
+  </div>
+  
+  <div class="skills-list">
+    <app-skill-card 
+      *ngFor="let skill of subSkills"
+      [skill]="skill"
+      [isCustomSkill]="isCustomSkill"
+      (toggleComplete)="toggleComplete($event)"
+      (deleteSubSkill)="deleteSubSkill($event)">
+    </app-skill-card>
+  </div>
+</div>
