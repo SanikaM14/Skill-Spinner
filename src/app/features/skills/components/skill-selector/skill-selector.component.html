@@ -34,7 +34,7 @@
         <span *ngIf="!skill.isCustom" class="featured-badge"><i class="bi bi-star-fill"></i> Featured</span>
       </div>
       <button *ngIf="skill.isCustom" 
-              (click)="deleteCustomSkill(skill.id, $event)"
+              (click)="deleteSkill(skill.id, $event)"
               class="delete-btn"
               title="Delete skill">
         <i class="bi bi-trash3"></i>

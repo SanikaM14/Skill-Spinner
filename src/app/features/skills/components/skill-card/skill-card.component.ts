@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SubSkill } from '../../models/skill.model';
+import { SubSkill } from '../../../../core/models/skill.model';
 
 @Component({
   selector: 'app-skill-card',

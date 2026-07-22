@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SkillSelectorComponent } from './components/skill-selector/skill-selector.component';
-import { SkillViewComponent } from './components/skill-view/skill-view.component';
-import { SkillCreatorComponent } from './components/skill-creator/skill-creator.component';
+import { SkillSelectorComponent } from './features/skills/components/skill-selector/skill-selector.component';
+import { SkillViewComponent } from './features/skills/components/skill-view/skill-view.component';
+import { SkillCreatorComponent } from './features/skills/components/skill-creator/skill-creator.component';
 
 const routes: Routes = [
   { path: '', component: SkillSelectorComponent },

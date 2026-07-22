@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SkillDataService } from '../../services/skill-data.service';
-import { SkillCreationService } from '../../services/skill-creation.service';
-import { SkillProgressService } from '../../services/skill-progress.service';
-import { SkillTopic, SubSkill } from '../../models/skill.model';
+import { SkillStorageService } from '../../../../core/services/skill-storage.service';
+import { SkillTopic, SubSkill } from '../../../../core/models/skill.model';
 
 @Component({
   selector: 'app-skill-view',
@@ -18,9 +16,7 @@ export class SkillViewComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private skillDataService: SkillDataService,
-    private skillCreationService: SkillCreationService,
-    private progressService: SkillProgressService
+    private skillStorageService: SkillStorageService
   ) {}
   
   ngOnInit(): void {
@@ -31,29 +27,17 @@ export class SkillViewComponent implements OnInit {
   }
   
   loadTopic(topicId: number): void {
-    // First try predefined skills
-    let topic = this.skillDataService.getSkillTopics()
-      .find(t => t.id === topicId);
-    
-    // If not found, try user-created skills
-    if (!topic) {
-      topic = this.skillCreationService.getUserSkills()
-        .find(t => t.id === topicId);
-      this.isCustomSkill = true;
-    } else {
-      this.isCustomSkill = false;
-    }
+    const topic = this.skillStorageService.getSkill(topicId);
     
     if (topic) {
       this.currentTopic = topic;
-      // Load saved progress
-      this.originalSubSkills = this.progressService.loadProgress(topicId, topic.subSkills);
+      this.isCustomSkill = !!topic.isCustom;
+      this.originalSubSkills = [...topic.subSkills];
       this.subSkills = [...this.originalSubSkills];
     }
   }
   
   shuffleSkills(): void {
-    // Fisher-Yates shuffle algorithm
     const shuffled = [...this.originalSubSkills];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -68,20 +52,22 @@ export class SkillViewComponent implements OnInit {
   }
   
   deleteSubSkill(subSkillId: number): void {
-    if (this.currentTopic && this.isCustomSkill && confirm('Delete this sub-skill?')) {
-      this.skillCreationService.deleteSubSkill(this.currentTopic.id, subSkillId);
-      // Reload the topic to refresh the sub-skills list
+    if (this.currentTopic && confirm('Delete this sub-skill?')) {
+      this.skillStorageService.deleteSubSkill(this.currentTopic.id, subSkillId);
       this.loadTopic(this.currentTopic.id);
     }
   }
   
   private saveProgress(): void {
     if (this.currentTopic) {
-      this.progressService.saveProgress(this.currentTopic.id, this.subSkills);
+      // Create a copy of the topic with updated subSkills
+      const updatedTopic = { ...this.currentTopic, subSkills: this.originalSubSkills };
+      this.skillStorageService.updateSkill(updatedTopic);
     }
   }
   
   get completionPercentage(): number {
+    if (this.subSkills.length === 0) return 0;
     const completed = this.subSkills.filter(s => s.completed).length;
     return (completed / this.subSkills.length) * 100;
   }

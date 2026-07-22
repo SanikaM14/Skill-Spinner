@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SkillCreationService } from '../../services/skill-creation.service';
-import { SkillTopic, SubSkill } from '../../models/skill.model';
+import { SkillStorageService } from '../../../../core/services/skill-storage.service';
+import { SkillTopic, SubSkill } from '../../../../core/models/skill.model';
 
 @Component({
   selector: 'app-skill-creator',
@@ -26,7 +26,7 @@ export class SkillCreatorComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private skillCreationService: SkillCreationService,
+    private skillStorageService: SkillStorageService,
     private router: Router
   ) {
     this.skillForm = this.fb.group({
@@ -105,7 +105,7 @@ export class SkillCreatorComponent implements OnInit {
         }))
       };
       
-      this.skillCreationService.saveUserSkill(newSkill);
+      this.skillStorageService.saveSkill(newSkill);
       this.router.navigate(['/']);
     }
   }
