@@ -21,7 +21,9 @@ Skill Spinner is a modern web application designed to help users track and manag
 
 Watch the video below to see how the application works:
 
-<video controls src="src/read.mp4" title="Skill Spinner Demo" width="100%"></video>
+https://github.com/SanikaM14/Skill-Spinner/raw/master/src/read.mp4
+
+(If the video does not play automatically, you can [download/view it here](https://github.com/SanikaM14/Skill-Spinner/blob/master/src/read.mp4).)
 
 ## Overview
 
