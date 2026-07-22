@@ -8,6 +8,7 @@ Skill Spinner is a modern web application designed to help users track and manag
 - [Overview](#overview)
 - [Technology Stack](#technology-stack)
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Folder Structure](#folder-structure)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -45,6 +46,29 @@ The application is built using Angular and follows a feature-based architecture 
 - **Customization**: Users can define their own learning paths with estimated times and resources.
 - **Data Persistence**: All data is saved to the local storage, allowing progress to be retained across sessions.
 - **Responsive Design**: The application interface adapts to various screen sizes.
+
+## Screenshots
+
+The main dashboard provides a comprehensive overview of available learning paths organized into categorized tabs.
+![Dashboard](src/assets/Read/S1.png)
+
+The comprehensive creation form allows users to define intricate custom learning paths by adding specific sub-skills and detailed descriptions.
+![Skill Creation](src/assets/Read/S2.png)
+
+The skill builder interface serves as the primary starting point for structuring new learning topics from scratch.
+![Empty Form](src/assets/Read/S3.png)
+
+The template library offers predefined learning structures to accelerate the creation of common skill paths.
+![Templates](src/assets/Read/S4.png)
+
+The all skills view seamlessly integrates standard featured skills with user-authored content.
+![All Skills](src/assets/Read/S5.png)
+
+The personal creations tab isolates custom paths and provides direct management options for user-generated content.
+![My Creations](src/assets/Read/S6.png)
+
+The detailed progress tracker displays an interactive completion bar and allows users to check off individual sub-skills as they advance.
+![Progress Tracker](src/assets/Read/S7.png)
 
 ## Folder Structure
 
